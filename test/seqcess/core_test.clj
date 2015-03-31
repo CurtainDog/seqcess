@@ -26,5 +26,3 @@
                     {:name "Alice" :sex :female :id (inc id)}
                     {:name "Bob" :sex :male :id (inc id)}
                     {:name "Crab" :id (inc id)}))))))
-
-(run-tests)
