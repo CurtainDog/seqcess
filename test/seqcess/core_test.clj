@@ -2,7 +2,10 @@
   (:require [clojure.test :refer :all]
             [seqcess.core :refer :all]))
 
-(deftest seq->-test
+(deftest seqcess-test
+
+  "I'm hoping to come up with my own testing framework... this'll do for now"
+
   (testing "Seeking arrow with"
     (testing "no binding"
       (is (nil?              (seq-> _)))
@@ -19,10 +22,16 @@
       (is (= '(32 16 8 4 2)  (seq-> [s] 2 (* 2 s) (* 2 s) (* 2 s) (* 2 s))))
       (is (= '(8 5 3 2 1 1)  (seq-> [x y] 1 1 (+ x y) (+ x y) (+ x y) (+ x y)))))
     (testing "advanced destructing"
-      (is (= '({:name "Crab", :id 3}
-               {:name "Bob", :sex :male, :id 2}
-               {:name "Alice", :sex :female, :id 1})
+      (is (= (list {:name "Crab", :id 3}
+                   {:name "Bob", :sex :male, :id 2}
+                   {:name "Alice", :sex :female, :id 1})
              (seq-> [{id :id :or {id 0}}]
                     {:name "Alice" :sex :female :id (inc id)}
                     {:name "Bob" :sex :male :id (inc id)}
-                    {:name "Crab" :id (inc id)}))))))
+                    {:name "Crab" :id (inc id)})))))
+
+  (testing "Stateful arrow"
+    (is (= '(1 false true)
+           (state-> state
+                    small [0 true]
+                    scary [(inc state) (not small)])))))
