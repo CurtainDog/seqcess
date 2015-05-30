@@ -1,5 +1,7 @@
 # seqcess
 
+[![Clojars Project](http://clojars.org/seqcess/latest-version.svg)](http://clojars.org/seqcess)
+
 A collection of utilities dealing with the seq abstraction
 
 Note on pronounciation: the official pronounciation of seq
